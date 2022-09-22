@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:ViewModelsViews.Views"
         xmlns:vm="clr-namespace:ViewModelsViews.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Calculator" MinHeight="400" MinWidth="350" MaxHeight="400" MaxWidth="350" ResizeMode="CanMinimize" Background="Coral">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -28,12 +29,30 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.ColumnSpan="5"
-                   Text="{Binding Path=Display}"></TextBlock>
+                   Text="{Binding Path=Display}" Margin="4,0,4,0" Height="30" VerticalAlignment="Center" FontWeight="Bold" Background="White" Padding="2,6,0,0"/>
 
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="5"
-                   Text="{Binding Path=Display}" Margin="0,0,0,86" Grid.RowSpan="2"/>
-        <Button Content="1" Grid.Row="2" Style="{StaticResource DigitBtn}">
-            
-        </Button>
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="3"
+                   Text="{Binding Path=Display}" Margin="4,0,0,0" Height="30" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Background="White" Padding="2,6,0,0" UseLayoutRounding="True"/>
+        
+        <Button Content="1" Grid.Row="2" Style="{StaticResource DigitBtn}"/>
+        <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource DigitBtn}"/>
+        <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource DigitBtn}"/>
+        <Button Content="4" Grid.Row="3" Grid.Column="0" Style="{StaticResource DigitBtn}"/>
+        <Button Content="5" Grid.Row="3" Grid.Column="1" Style="{StaticResource DigitBtn}"/>
+        <Button Content="6" Grid.Row="3" Grid.Column="2" Style="{StaticResource DigitBtn}"/>
+        <Button Content="7" Grid.Row="4" Grid.Column="0" Style="{StaticResource DigitBtn}"/>
+        <Button Content="8" Grid.Row="4" Grid.Column="1" Style="{StaticResource DigitBtn}"/>
+        <Button Content="9" Grid.Row="4" Grid.Column="2" Style="{StaticResource DigitBtn}"/>
+        <Button Content="0" Grid.Row="5" Grid.Column="1" Style="{StaticResource DigitBtn}"/>
+        <Button Content= "{Binding Comma}" Grid.Row="5" Grid.Column="2" Style="{StaticResource DigitBtn}"/>
+        <Button Content="+/-" Grid.Row="5" Grid.Column="0" Style="{StaticResource DigitBtn}"/>
+        <Button Content="+" Grid.Row="2" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
+        <Button Content="-" Grid.Row="3" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
+        <Button Content="*" Grid.Row="4" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
+        <Button Content="/" Grid.Row="5" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
+        <Button Content="⌫" Grid.Row="1" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
+        <Button Content="=" Grid.Row="1" Grid.Column="4" Style="{StaticResource DigitBtn}"/>
+
+
     </Grid>
 </Window>
