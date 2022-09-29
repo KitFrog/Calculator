@@ -29,29 +29,49 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.ColumnSpan="5"
-                   Text="{Binding Path=Display}" Margin="4,0,4,0" Height="30" VerticalAlignment="Center" FontWeight="Bold" Background="White" Padding="2,6,0,0"/>
+                   Text="{Binding Path=DisplayOut}" Margin="4,0,4,0" Height="30" VerticalAlignment="Center" FontWeight="Bold" Background="White" Padding="2,6,0,0"/>
 
         <TextBlock Grid.Row="1" Grid.ColumnSpan="3"
-                   Text="{Binding Path=Display}" Margin="4,0,0,0" Height="30" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Background="White" Padding="2,6,0,0" UseLayoutRounding="True"/>
+                   Text="{Binding Path=DisplayIn}" Margin="4,0,0,0" Height="30" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Background="White" Padding="2,6,0,0" UseLayoutRounding="True"/>
         
-        <Button Content="1" Grid.Row="2" Style="{StaticResource DigitBtn}" />
-        <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource DigitBtn}"/>
-        <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource DigitBtn}"/>
-        <Button Content="4" Grid.Row="3" Grid.Column="0" Style="{StaticResource DigitBtn}"/>
-        <Button Content="5" Grid.Row="3" Grid.Column="1" Style="{StaticResource DigitBtn}"/>
-        <Button Content="6" Grid.Row="3" Grid.Column="2" Style="{StaticResource DigitBtn}"/>
-        <Button Content="7" Grid.Row="4" Grid.Column="0" Style="{StaticResource DigitBtn}"/>
-        <Button Content="8" Grid.Row="4" Grid.Column="1" Style="{StaticResource DigitBtn}"/>
-        <Button Content="9" Grid.Row="4" Grid.Column="2" Style="{StaticResource DigitBtn}"/>
-        <Button Content="0" Grid.Row="5" Grid.Column="1" Style="{StaticResource DigitBtn}"/>
-        <Button Content= "{Binding Comma}" Grid.Row="5" Grid.Column="2" Style="{StaticResource DigitBtn}"/>
-        <Button Content="+/-" Grid.Row="5" Grid.Column="0" Style="{StaticResource DigitBtn}"/>
-        <Button Content="+" Grid.Row="2" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
-        <Button Content="-" Grid.Row="3" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
-        <Button Content="*" Grid.Row="4" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
-        <Button Content="/" Grid.Row="5" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
-        <Button Content="⌫" Grid.Row="1" Grid.Column="3" Style="{StaticResource DigitBtn}"/>
-        <Button Content="=" Grid.Row="1" Grid.Column="4" Style="{StaticResource DigitBtn}"/>
+        <Button Content="1" Grid.Row="2" Style="{StaticResource DigitBtn}" 
+                Command="{Binding Path=DigitPress}" CommandParameter="1"/>
+        <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="2"/>
+        <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="3"/>
+        <Button Content="4" Grid.Row="3" Grid.Column="0" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="4"/>
+        <Button Content="5" Grid.Row="3" Grid.Column="1" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="5"/>
+        <Button Content="6" Grid.Row="3" Grid.Column="2" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="6"/>
+        <Button Content="7" Grid.Row="4" Grid.Column="0" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="7"/>
+        <Button Content="8" Grid.Row="4" Grid.Column="1" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="8"/>
+        <Button Content="9" Grid.Row="4" Grid.Column="2" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="9"/>
+        <Button Content="0" Grid.Row="5" Grid.Column="1" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=DigitPress}" CommandParameter="0"/>
+        <Button Content= "{Binding Comma}" Grid.Row="5" Grid.Column="2" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=CommaPress}"/>
+        <Button Content="+/-" Grid.Row="5" Grid.Column="0" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=SymbolChange}"/>
+        <Button Content="+" Grid.Row="2" Grid.Column="3" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=CommandPress}" CommandParameter="+" />
+        <Button Content="-" Grid.Row="3" Grid.Column="3" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=CommandPress}" CommandParameter="-"/>
+        <Button Content="*" Grid.Row="4" Grid.Column="3" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=CommandPress}" CommandParameter="*"/>
+        <Button Content="/" Grid.Row="5" Grid.Column="3" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=CommandPress}" CommandParameter="/"/>
+        <Button Content="⌫" Grid.Row="1" Grid.Column="3" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=Delete}"/>
+        <Button Content="=" Grid.Row="5" Grid.Column="4" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=Result}"/>
+        <Button Content="CE" Grid.Row="1" Grid.Column="4" Style="{StaticResource DigitBtn}"
+                Command="{Binding Path=Clear}"/>
 
 
     </Grid>

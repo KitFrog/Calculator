@@ -4,19 +4,19 @@ using System.Text;
 
 namespace Models
 {
-    public class Calulations
+    public class Calculations
     {
         public string Result { get; private set; } = string.Empty;
-        public string FirstOperand { get; set; } = string.Empty;
+        public string FirstOperand { get; set; } = "0";
         public string SecondOperand { get; set; } = string.Empty;
         public string Operation { get; set; } = string.Empty;
 
-        public Calulations()
+        public Calculations()
         {
 
         }
 
-        public Calulations(string firstOperand, string secondOperand, string operation)
+        public Calculations(string firstOperand, string secondOperand, string operation)
         {
             ValidateOperand(firstOperand);
             ValidateOperand(secondOperand);
