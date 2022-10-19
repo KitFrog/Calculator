@@ -34,20 +34,24 @@ namespace Models
 
             try
             {
-                switch (Operation)
+                checked
                 {
-                    case ("+"):
-                        Result = (Convert.ToDouble(FirstOperand) + Convert.ToDouble(SecondOperand)).ToString();
-                        break;
-                    case ("-"):
-                        Result = (Convert.ToDouble(FirstOperand) - Convert.ToDouble(SecondOperand)).ToString();
-                        break;
-                    case ("*"):
-                        Result = (Convert.ToDouble(FirstOperand) * Convert.ToDouble(SecondOperand)).ToString();
-                        break;
-                    case ("/"):
-                        Result = (Convert.ToDouble(FirstOperand) / Convert.ToDouble(SecondOperand)).ToString();
-                        break;
+                    switch (Operation)
+                    {
+                        case ("+"):
+                            Result = (Convert.ToDouble(FirstOperand) + Convert.ToDouble(SecondOperand)).ToString();
+                            break;
+                        case ("-"):
+                            Result = (Convert.ToDouble(FirstOperand) - Convert.ToDouble(SecondOperand)).ToString();
+                            break;
+                        case ("*"):
+                            Result = (Convert.ToDouble(FirstOperand) * Convert.ToDouble(SecondOperand)).ToString();
+                            break;
+                        case ("/"):
+                            if (SecondOperand == "0") throw new DivideByZeroException();
+                            Result = (Convert.ToDouble(FirstOperand) / Convert.ToDouble(SecondOperand)).ToString();
+                            break;
+                    }
                 }
             }
             catch

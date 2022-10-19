@@ -9,9 +9,12 @@ namespace ViewModelsViews.ViewModels
     public class MainViewModel : ViewModelBase
     {
         public string Comma => CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+        public IErrorHundler ErrorHundler { private get; set; } = IErrorHundler.Empty;
+
         private Calculations model = new Calculations();
         private string displayIn = "0";
         private string lastOperation = "";
+        
 
         public string DisplayIn
         {
@@ -33,6 +36,7 @@ namespace ViewModelsViews.ViewModels
             {
                 displayOut = value;
                 OnPropertyChanged("displayOut");
+                Result.RaiseCanExecuteChanged();
             }
         }
 
@@ -52,35 +56,37 @@ namespace ViewModelsViews.ViewModels
             CommaPress = new Command(commaPress, () => !DisplayIn.Contains(Comma));
             Delete = new Command(delete);
             Clear = new Command(clear);
-            Result = new Command(result);
+            Result = new Command(result, () => !DisplayOut.Contains("="), ErrorHundler);
         }
 
         private void commandPress(string param)
         {
+            if (displayOut.Contains("="))
+            {
+                DisplayOut = "";
+            }
+            
             if (lastOperation == "")
             {
-                DisplayOut = DisplayIn + param;
-                model.FirstOperand = DisplayIn;
-                model.Operation = param;
+                DisplayOut = $"{DisplayIn} {param}";
+                
                 DisplayIn = "0";
-                lastOperation = param;
             }
+
+            else
+            {
+                DisplayOut = DisplayOut.Remove(DisplayOut.Length - 1) + param;
+            }
+            lastOperation = param;
+            model.Operation = param;
         }
         private void result()
         {
-            try
-            {
-                model.Calulate();
-                DisplayOut += $" = {model.Result}";
-            }
-            catch
-            {
-                if(string.IsNullOrEmpty(model.SecondOperand))
-                {
-                    DisplayOut = "";
-                    DisplayIn = model.FirstOperand;
-                }
-            }
+            model.Calulate();
+            DisplayOut += $" {DisplayIn} = {model.Result}";
+            DisplayIn = model.Result;
+            lastOperation = "";
+            model = new Calculations() { FirstOperand = displayIn };
         }
 
         private void digitPress(string param)
@@ -113,14 +119,18 @@ namespace ViewModelsViews.ViewModels
         }
         private void delete()
         {
-            if (DisplayIn == "0" || DisplayIn == "-0") return;
+            if (DisplayIn == "0" || DisplayIn == "-0" || DisplayIn.Length == 1)
+            {
+                DisplayIn = "0";
+                return;
+            }
 
             DisplayIn = DisplayIn.Remove(DisplayIn.Length-1);
         }
         private void clear()
         {
             DisplayIn = "0";
-            DisplayOut = "";
+            lastOperation = DisplayOut = "";
             model = new Calculations();
         }
 

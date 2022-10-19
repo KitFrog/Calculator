@@ -9,14 +9,16 @@ namespace ViewModelsViews.ViewModels
     {
 
         public event EventHandler CanExecuteChanged;
+        private IErrorHundler errorHandler;
 
         private Action executeMethod;
         private Func<bool> canExecute;
 
-        public Command(Action executeMethod, Func<bool> canExecute = null)
+        public Command(Action executeMethod, Func<bool> canExecute = null, IErrorHundler errorHundler = null)
         {
             this.executeMethod = executeMethod;
             this.canExecute = canExecute;
+            this.errorHandler = errorHundler;
         }
 
         public bool CanExecute(object _)
@@ -28,7 +30,22 @@ namespace ViewModelsViews.ViewModels
         {
             if (CanExecute(null))
             {
-                executeMethod.Invoke();
+                try
+                {
+                    executeMethod.Invoke();
+
+                }
+                catch (Exception e)
+                {
+                    if (errorHandler != null)
+                    {
+                        errorHandler.HandleError(e);
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
         }
 
@@ -43,11 +60,13 @@ namespace ViewModelsViews.ViewModels
 
         private Action<T> executeMethod;
         private Func<T, bool> canExecute;
+        private IErrorHundler errorHandler;
 
-        public Command(Action<T> executeMethod, Func<T, bool> canExecute = null)
+        public Command(Action<T> executeMethod, Func<T, bool> canExecute = null, IErrorHundler errorHandler = null)
         {
             this.executeMethod = executeMethod;
             this.canExecute = canExecute;
+            this.errorHandler = errorHandler;
         }
 
         public bool CanExecute(object param)
@@ -59,7 +78,21 @@ namespace ViewModelsViews.ViewModels
         {
             if (CanExecute(null))
             {
-                executeMethod.Invoke((T)param);
+                try
+                {
+                    executeMethod.Invoke((T)param);
+                }
+                catch (Exception e)
+                {
+                    if (errorHandler != null)
+                    {
+                        errorHandler.HandleError(e);
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
         }
 
