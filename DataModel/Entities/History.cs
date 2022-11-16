@@ -11,5 +11,10 @@ namespace DataModel.Entities
         public bool IsGuest { get; set; } = true;
         public Guid CalculationId { get; set; }
         public Calculation Calculation { get; set; } = null!;
+
+        public override string ToString()
+        {
+            return Calculation.ToString();
+        }
     }
 }

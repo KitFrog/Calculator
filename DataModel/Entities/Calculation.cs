@@ -17,5 +17,12 @@ namespace DataModel.Entities
             if (left == null || right == null) return false;
             return left.Result == right.Result && left.Operation == right.Operation && left.FirstOperand == right.FirstOperand;
         }
+
+        public override string ToString()
+        {
+            if (string.IsNullOrEmpty(SecondOperand))
+                return $"{Operation}({FirstOperand}) = {Result}";
+            return $"{FirstOperand} {Operation} {SecondOperand} = {Result}";
+        }
     }
 }
