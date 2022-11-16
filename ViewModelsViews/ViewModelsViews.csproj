@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ViewModels\MainViewModel.cs~RFe6b3a1.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Include="App.xaml" />
   </ItemGroup>
 

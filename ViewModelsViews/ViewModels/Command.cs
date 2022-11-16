@@ -9,12 +9,12 @@ namespace ViewModelsViews.ViewModels
     {
 
         public event EventHandler CanExecuteChanged;
-        private IErrorHundler errorHandler;
+        private IErrorHandler errorHandler;
 
         private Action executeMethod;
         private Func<bool> canExecute;
 
-        public Command(Action executeMethod, Func<bool> canExecute = null, IErrorHundler errorHundler = null)
+        public Command(Action executeMethod, Func<bool> canExecute = null, IErrorHandler errorHundler = null)
         {
             this.executeMethod = executeMethod;
             this.canExecute = canExecute;
@@ -60,9 +60,9 @@ namespace ViewModelsViews.ViewModels
 
         private Action<T> executeMethod;
         private Func<T, bool> canExecute;
-        private IErrorHundler errorHandler;
+        private IErrorHandler errorHandler;
 
-        public Command(Action<T> executeMethod, Func<T, bool> canExecute = null, IErrorHundler errorHandler = null)
+        public Command(Action<T> executeMethod, Func<T, bool> canExecute = null, IErrorHandler errorHandler = null)
         {
             this.executeMethod = executeMethod;
             this.canExecute = canExecute;

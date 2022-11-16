@@ -9,7 +9,7 @@ namespace ViewModelsViews.ViewModels
     public class MainViewModel : ViewModelBase
     {
         public string Comma => CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-        public IErrorHundler ErrorHundler { private get; set; } = IErrorHundler.Empty;
+        private readonly IErrorHandler? errorHandler;
 
         private Calculations model = new Calculations();
         private string displayIn = "0";
@@ -48,15 +48,16 @@ namespace ViewModelsViews.ViewModels
         public Command Clear { get; }
         public Command Result { get; }
 
-        public MainViewModel()
+        public MainViewModel(IErrorHandler errorHandler)
         {
+            this.errorHandler = errorHandler;
             DigitPress = new Command<string>(digitPress);
             CommandPress = new Command<string>(commandPress);
             SymbolChange = new Command(symbolChange);
             CommaPress = new Command(commaPress, () => !DisplayIn.Contains(Comma));
             Delete = new Command(delete);
             Clear = new Command(clear);
-            Result = new Command(result, () => !DisplayOut.Contains("="), ErrorHundler);
+            Result = new Command(result, () => !DisplayOut.Contains("="), errorHandler);
         }
 
         private void commandPress(string param)

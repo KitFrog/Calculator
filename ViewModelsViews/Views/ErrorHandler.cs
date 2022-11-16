@@ -6,7 +6,7 @@ using ViewModelsViews.ViewModels;
 
 namespace ViewModelsViews.Views
 {
-    class ErrorHandler : IErrorHundler
+    class ErrorHandler : IErrorHandler
     {
         public void HandleError(Exception ex)
         {

@@ -22,8 +22,7 @@ namespace ViewModelsViews.Views
         public MainWindow()
         {
             InitializeComponent();
-            if (DataContext is MainViewModel model)
-                model.ErrorHundler = new ErrorHandler();
+            DataContext = new MainViewModel(new ErrorHandler());
 
         }
     }

@@ -7,9 +7,7 @@
         xmlns:vm="clr-namespace:ViewModelsViews.ViewModels"
         mc:Ignorable="d"
         Title="Calculator" MinHeight="400" MinWidth="350" MaxHeight="400" MaxWidth="350" ResizeMode="CanMinimize" Background="Coral">
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
